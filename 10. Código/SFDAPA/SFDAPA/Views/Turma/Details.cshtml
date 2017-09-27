@@ -1,0 +1,42 @@
+﻿@model Model.Models.Turma
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Turma</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeTurma)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeTurma)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailProfessor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailProfessor)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Codigo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

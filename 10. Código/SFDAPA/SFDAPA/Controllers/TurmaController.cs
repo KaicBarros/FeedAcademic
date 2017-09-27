@@ -69,7 +69,11 @@ namespace SFDAPA.Controllers
         // GET: Turma/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Turma turma = gerenciador.Obter(id);
+            if (turma != null)
+                return View();
+
+            return RedirectToAction("Listar");
         }
 
         // POST: Turma/Edit/5
@@ -79,8 +83,9 @@ namespace SFDAPA.Controllers
             try
             {
                 // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                Turma turma = gerenciador.Obter(id);
+                gerenciador.Editar(turma);
+                return RedirectToAction("Listar");
             }
             catch
             {
