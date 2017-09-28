@@ -70,33 +70,34 @@ namespace SFDAPA.Controllers
         public ActionResult Edit(int id)
         {
             Turma turma = gerenciador.Obter(id);
-            if (turma != null)
-                return View();
 
-            return RedirectToAction("Listar");
+            return View(turma);
         }
 
         // POST: Turma/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Turma turma)
         {
             try
             {
                 // TODO: Add update logic here
-                Turma turma = gerenciador.Obter(id);
-                gerenciador.Editar(turma);
+                Turma turmaAux = gerenciador.Obter(turma.Codigo);
+                turmaAux.NomeTurma = turma.NomeTurma;
+                turmaAux.EmailProfessor = turma.EmailProfessor;
+                gerenciador.Editar(turmaAux);
                 return RedirectToAction("Listar");
             }
             catch
             {
-                return View();
+                return View(turma);
             }
         }
 
         // GET: Turma/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Turma turmaAux = gerenciador.Obter(id);
+            return View(turmaAux);
         }
 
         // POST: Turma/Delete/5
@@ -106,8 +107,9 @@ namespace SFDAPA.Controllers
             try
             {
                 // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                Turma turmaAux = gerenciador.Obter(id);
+                gerenciador.remover(turmaAux);
+                return RedirectToAction("Listar");
             }
             catch
             {
