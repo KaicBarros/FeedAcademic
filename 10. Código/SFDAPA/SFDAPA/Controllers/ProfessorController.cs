@@ -21,18 +21,20 @@ namespace SFDAPA.Controllers
         // GET: Professor
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Turma");
         }
 
         // GET: Professor/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Professor professor = gerenciador.Obter(id);
+            return View(professor);
         }
 
         // GET: Professor/Create
         public ActionResult Create()
         {
+
             return View();
         }
 
@@ -46,42 +48,51 @@ namespace SFDAPA.Controllers
                 if (ModelState.IsValid)
                 {
                     gerenciador.Adicionar(professor);
-                    RedirectToAction("Index");
+                    RedirectToAction("Listar");
                 }
-                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
             }
+            return View();
         }
 
         // GET: Professor/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Professor professor = gerenciador.Obter(id);
+            return View(professor);
         }
 
         // POST: Professor/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Professor professor)
         {
             try
             {
                 // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    Professor professorAux = gerenciador.Obter(professor.Codigo);
+                    professorAux.Email = professor.Email;
+                    professorAux.Instituição = professor.Instituição;
+                    professorAux.Nome = professor.Nome;
+                    professorAux.Senha = professor.Senha;
+                    gerenciador.Editar(professor);
+                    return RedirectToAction("Listar");
+                }
             }
             catch
             {
-                return View();
             }
+            return View();
         }
 
         // GET: Professor/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Professor professor = gerenciador.Obter(id);
+            return View(professor);
         }
 
         // POST: Professor/Delete/5
@@ -91,13 +102,19 @@ namespace SFDAPA.Controllers
             try
             {
                 // TODO: Add delete logic here
-
+                Professor professor = gerenciador.Obter(id);
+                gerenciador.Remover(professor);
                 return RedirectToAction("Index");
             }
             catch
             {
                 return View();
             }
+        }
+
+        public ActionResult Listar()
+        {
+            return View(gerenciador.ObterTodos());
         }
     }
 }

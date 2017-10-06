@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Model.App_GlobalResources;
+using System.ComponentModel.DataAnnotations;
+
 
 /**
  * 
@@ -14,6 +17,7 @@ namespace Model.Models
         public int Codigo { get; set; }
         public String Descricao { get; set; }
         public char Resposta { get; set; }
+        public int Pergunta { get; set; }
 
         public Alternativa()
         {

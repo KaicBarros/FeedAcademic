@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 
 namespace SFDAPA.Util
 {
-    public enum SessionKeys { ALUNO, PROFESSOR, ADMINISTRADOR }
+    public enum SessionKeys { USUARIO }
 
-    public class SessionHelper
+    public static class SessionHelper
     {
         public static object Get(SessionKeys chave)
         {
@@ -20,6 +18,5 @@ namespace SFDAPA.Util
             string chaveString = Enum.GetName(typeof(SessionKeys), chave);
             return HttpContext.Current.Session[chaveString] = valor;
         }
-
     }
 }

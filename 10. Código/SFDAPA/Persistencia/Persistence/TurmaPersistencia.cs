@@ -45,5 +45,10 @@ namespace Persistencia.Persistence
             return listaTurma;
         }
 
+        /*public List<Turma> ObterTodosPorProfessor(int id)
+        {
+
+        }*/
+
     }
 }

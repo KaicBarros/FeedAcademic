@@ -45,6 +45,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -138,6 +144,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\Mensagens.Designer.cs" />
+    <Compile Include="App_GlobalResources\Mensagens1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Mensagens.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -158,6 +170,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\AuthenticatedAttribute.cs" />
+    <Compile Include="Util\Criptografia.cs" />
+    <Compile Include="Util\CustomAuthorizeAttribute.cs" />
     <Compile Include="Util\SessionHelper.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -197,15 +212,34 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Professor.cshtml" />
-    <Content Include="Views\Home\Aluno.cshtml" />
+    <Content Include="Views\Professor\index.cshtml" />
+    <Content Include="Views\Aluno\index.cshtml" />
     <Content Include="Views\Professor\Create.cshtml" />
-    <Content Include="Views\Turma\Listar.cshtml" />
     <Content Include="Views\Turma\Create.cshtml" />
     <Content Include="Views\Turma\Details.cshtml" />
     <Content Include="Views\Turma\Edit.cshtml" />
     <Content Include="Views\Turma\Delete.cshtml" />
     <Content Include="Views\Turma\Index.cshtml" />
+    <Content Include="Views\Aluno\Listar.cshtml" />
+    <Content Include="Views\Aluno\Create.cshtml" />
+    <Content Include="Views\Aluno\Details.cshtml" />
+    <Content Include="Views\Aluno\Edit.cshtml" />
+    <Content Include="Views\Aluno\Delete.cshtml" />
+    <Content Include="Views\Home\Logar.cshtml" />
+    <Content Include="Views\Professor\Details.cshtml" />
+    <Content Include="Views\Professor\Edit.cshtml" />
+    <Content Include="Views\Professor\Delete.cshtml" />
+    <Content Include="Views\Aula\Index.cshtml" />
+    <Content Include="Views\Aula\Details.cshtml" />
+    <Content Include="Views\Aula\Create.cshtml" />
+    <Content Include="Views\Aula\Edit.cshtml" />
+    <Content Include="Views\Aula\Delete.cshtml" />
+    <Content Include="Views\Professor\Listar.cshtml" />
+    <Content Include="Views\Assunto\Create.cshtml" />
+    <Content Include="Views\Assunto\Index.cshtml" />
+    <Content Include="Views\Assunto\Delete.cshtml" />
+    <Content Include="Views\Assunto\Edit.cshtml" />
+    <Content Include="Views\Assunto\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -234,6 +268,12 @@
       <Project>{4998a1cf-512f-4a2b-93ba-879b747c95a8}</Project>
       <Name>Negocio</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Mensagens.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Mensagens1.designer.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -43,5 +43,10 @@ namespace Negocio.Business
             return persistencia.ObterTodos();
         }
 
+        /*public List<Turma> ObterTodosPorProfessor()
+        {
+            
+        }*/
+
     }
 }

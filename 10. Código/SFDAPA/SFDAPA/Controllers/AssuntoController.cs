@@ -20,13 +20,13 @@ namespace SFDAPA.Controllers
         // GET: Assunto
         public ActionResult Index()
         {
-            return View();
+            return View(gerenciador.ObterTodos());
         }
 
         // GET: Assunto/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(gerenciador.Obter(id));
         }
 
         // GET: Assunto/Create
@@ -37,57 +37,66 @@ namespace SFDAPA.Controllers
 
         // POST: Assunto/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Assunto assunto)
         {
             try
             {
                 // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    gerenciador.Adicionar(assunto);
+                    return RedirectToAction("Index");
+                }
             }
             catch
             {
-                return View();
             }
+            return View();
         }
 
         // GET: Assunto/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(gerenciador.Obter(id));
         }
 
         // POST: Assunto/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Assunto assunto)
         {
             try
             {
                 // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    gerenciador.Editar(assunto);
+                    return RedirectToAction("Index");
+                }
             }
             catch
             {
-                return View();
             }
+            return View();
         }
 
         // GET: Assunto/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+             return View(gerenciador.Obter(id));
         }
 
         // POST: Assunto/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(FormCollection collection)
         {
             try
             {
                 // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                Assunto assunto = new Assunto();
+                TryUpdateModel(assunto, collection.ToValueProvider());
+                gerenciador.Remover(assunto);
+                return RedirectToAction("Index", "Assunto");
             }
             catch
             {

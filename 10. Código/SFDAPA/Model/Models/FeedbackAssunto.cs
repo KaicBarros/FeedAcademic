@@ -14,6 +14,7 @@ namespace Model.Models
 
         public int Codigo { get; set; }
         public PerguntaFeedback[] QuestionarioFeedback { get; set; }
+        public int idAssunto;
 
         public FeedbackAssunto()
         {

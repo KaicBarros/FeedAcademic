@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Model.App_GlobalResources;
+using System.ComponentModel.DataAnnotations;
 
 /**
  * 
@@ -11,11 +13,13 @@ namespace Model.Models
 {
     public class Turma
     {
-
+        [Key]
         public int Codigo { get; set; }
         public String NomeTurma { get; set; }
         public String EmailProfessor { get; set; }
         public String[] EmailAlunos { get; set; }
+        public int idProfessor { get; set; }
+        
 
         public Turma()
         {

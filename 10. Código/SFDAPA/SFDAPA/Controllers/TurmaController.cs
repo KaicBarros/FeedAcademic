@@ -12,7 +12,6 @@ namespace SFDAPA.Controllers
     {
         private GerenciadorTurma gerenciador;
         private List<Turma> turmas;
-        private Turma turma;
 
         public TurmaController()
         {
@@ -22,19 +21,16 @@ namespace SFDAPA.Controllers
         // GET: Turma
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult Listar()
-        {  
             turmas = gerenciador.ObterTodos();
             return View(turmas);
         }
 
+
         // GET: Turma/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Turma turma = gerenciador.Obter(id);
+            return View(turma);
         }
 
         // GET: Turma/Create
@@ -54,11 +50,11 @@ namespace SFDAPA.Controllers
                 if (ModelState.IsValid)
                 {
                     gerenciador.Adicionar(turma);
-                    RedirectToAction("Listar");
+                    RedirectToAction("Index");
 
                 }
                 // TODO: Add insert logic here
-                return RedirectToAction("Listar");
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -85,12 +81,14 @@ namespace SFDAPA.Controllers
                 turmaAux.NomeTurma = turma.NomeTurma;
                 turmaAux.EmailProfessor = turma.EmailProfessor;
                 gerenciador.Editar(turmaAux);
-                return RedirectToAction("Listar");
+                return RedirectToAction("index");
             }
             catch
             {
-                return View(turma);
+                
             }
+
+            return View(turma);
         }
 
         // GET: Turma/Delete/5
@@ -109,7 +107,7 @@ namespace SFDAPA.Controllers
                 // TODO: Add delete logic here
                 Turma turmaAux = gerenciador.Obter(id);
                 gerenciador.remover(turmaAux);
-                return RedirectToAction("Listar");
+                return RedirectToAction("Index");
             }
             catch
             {
